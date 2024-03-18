@@ -4,6 +4,7 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, "Josefin Sans", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #171618;
 }
 
 code {
