@@ -14,7 +14,7 @@ function Popular() {
                 </Link>
             })
         }
-    }
+    };
 
     return (
         <PopularStyle>
@@ -31,12 +31,12 @@ const PopularStyle = styled.div`
         margin-top: 2rem;
         padding-top: 2rem;
         padding-bottom: 2rem;
-        padding-right: 20rem;
+        padding-right: 10rem;
         padding-left: 2rem;
         width: 100%;
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        grid-gap: 2rem;
+        grid-gap: 5rem;
         a{
             height: 500px;
             border-radius: 20px;
