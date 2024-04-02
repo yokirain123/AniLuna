@@ -2,6 +2,7 @@ import './App.scss';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Popular from './Components/Popular';
 import AnimeItem from './Components/AnimeItem';
+import React from 'react';
 
 
 function App() {

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styled from 'styled-components';
 import { useParams, Link } from "react-router-dom";
-import { Sidebar } from "flowbite-react";
 
 function AnimeItem() {
   const { id } = useParams();
@@ -48,56 +47,24 @@ function AnimeItem() {
   }, []);
 
   return (
-    <FullAnime>
-      <AnimeDetails className="details">
-      <div className="image">
-        <img src={images?.jpg.large_image_url} alt=""></img>
-      </div>
-        <div className="anime-details">
-          <h1>{title}</h1>
-          <p>
-            <p>
-              Japanese Title: <span>{title_japanese}</span>
-            </p>
-          </p>
-          <p>
-            <p>
-              Rating: <span>{rating}</span>
-            </p>
-          </p>
-          <p>
-            <p>
-              Aired: <span>{aired?.string}</span>
-            </p>
-          </p>
-          <p>
-            <p>
-              Status: <span>{status}</span>
-            </p>
-          </p>
-          <p>
-            <p>
-              Type: <span>{type}</span>
-            </p>
-          </p>
-          <p>
-            <p>
-              Episodes: <span>{episodes}</span>
-            </p>
-          </p>
-          <p>
-            <p>
-              Season: <span>{season}</span>
-            </p>
-          </p>
-          <p>
-            <p>
-              Duration: <span>{duration}</span>
-            </p>
-          </p>
+    <FullAnime className="px-[7rem] py-[5rem]">
+      <AnimeDetails className="details flex justify-between">
+        <div className="image">
+          <img src={images?.jpg.large_image_url} alt=""></img>
+        </div>
+        <div className="bg-[#242126] p-[15px] rounded-[20px]">
+          <h1 className="text-[24px] text-[#be92f6]">{title}</h1>
+            <p>Japanese Title: <span>{title_japanese}</span></p>
+            <p>Rating: <span>{rating}</span></p>
+            <p>Aired: <span>{aired?.string}</span></p>
+            <p>Status: <span>{status}</span></p>
+            <p>Type: <span>{type}</span></p>
+            <p>Episodes: <span>{episodes}</span></p>
+            <p>Season: <span>{season}</span></p>
+            <p>Duration: <span>{duration}</span></p>
         </div>
       </AnimeDetails>
-      <Description className="description">
+      <Description className="description text-white bg-[#242126] p-[15px] rounded-[20px] my-[5rem]">
         {synopsis && (showMore ? synopsis : synopsis.substring(0, 450) + "...")}
         <button
           onClick={() => {
@@ -108,8 +75,8 @@ function AnimeItem() {
         </button>
       </Description>
       <AnimeCharacters>
-        <h3 className="charactersTitle">Characters</h3>
-        <div className="charactersGrid">
+        <h3 className="text-[24px] text-[#be92f6]">Characters</h3>
+        <div className="charactersGrid grid grid-cols-8 grid-rows-3	gap-[5px]">
           {characters?.map((character, index) => {
             const { role } = character;
             const { images, name, mal_id } = character.character;
@@ -125,14 +92,11 @@ function AnimeItem() {
           })}
         </div>
       </AnimeCharacters>
-      
     </FullAnime>
   );
 }
 
 const FullAnime = styled.div `
-  padding: 5rem 7em;
-
   img {
     border-radius: 20px;
     width: 290px;
@@ -143,12 +107,6 @@ const FullAnime = styled.div `
 `
 
 const AnimeDetails = styled.div `
-      display: flex;
-      justify-content: space-between;
-      h1 {
-        font-size: 24;
-        color: #be92f6;
-      }
       p {
         color: #be92f6;
         font-size: 16px;
@@ -156,22 +114,9 @@ const AnimeDetails = styled.div `
       span {
         color: white;
       }
-
-      .anime-details {
-        background-color: #242126;
-        padding: 15px;
-        border-radius: 20px;
-      }
 `
 
 const Description = styled.div `
-
-  padding: 1rem;
-  color: white;
-  background-color: #242126;
-  padding: 15px;
-  border-radius: 20px;
-  margin: 5rem 0;
   button {
     background-color: #242126;
     border: 0;
@@ -184,22 +129,9 @@ const Description = styled.div `
 `
 
 const AnimeCharacters = styled.div `
-  .charactersTitle{
-    font-size: 24px;
-    color: #BE92F6
-  }
-  .charactersGrid {
-    display: grid;
-    grid-template-columns: repeat(8, 0.5fr);
-    grid-gap: 40px;
-
-
-
     a, a:visited, a:link { 
-      width: 100px;
       text-decoration: none
     }
-  }
   .character{
     border-radius: 7px;
     transition: all .4s ease-in-out;
@@ -218,6 +150,7 @@ const AnimeCharacters = styled.div `
       border: 3px solid #BE92F6;
       width: 100px;
       height: 150px;
+      display: inline
     }
   }
 `
