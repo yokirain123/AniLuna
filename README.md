@@ -1,6 +1,6 @@
-<h1 align="center"> AniLuna *Work in Progress* </h1>
+<h1 align="center"> AniLuna </h1>
 
-## Anime website on React using Jikan API.
+## Anime website on React using Jikan API. *(Still under development)*
 ### This project based on React, using Tailwind CSS, API's like Jikan Anime Database, UI libraries. For this project currently used Framer Motion.
 
 
