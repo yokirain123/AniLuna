@@ -66,7 +66,7 @@ function AnimeItem() {
       </AnimeDetails>
       <Description className="description text-white bg-[#242126] p-[15px] rounded-[20px] my-[5rem]">
         {synopsis && (showMore ? synopsis : synopsis.substring(0, 450) + "...")}
-        <button
+        <button className="ml-5"
           onClick={() => {
             setShowMore(!showMore);
           }}
@@ -79,13 +79,14 @@ function AnimeItem() {
         <div className="charactersGrid grid grid-cols-8 grid-rows-3	gap-[5px]">
           {characters?.map((character, index) => {
             const { role } = character;
-            const { images, name, mal_id } = character.character;
+            const { images, name, mal_id, voice_actors } = character.character;
             return (
               <Link to={`/character/${mal_id}`} key={index}>
                 <div className="character">
                   <img src={images?.jpg.image_url} alt="" />
                   <h4>{name}</h4>
                   <p>{role}</p>
+                  <p>{voice_actors}</p>
                 </div>
               </Link>
             );
