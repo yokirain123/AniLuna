@@ -1,7 +1,7 @@
-<h1 align="center"> AniLuna </h1>
+<h1 align="center"> :japanese_castle: AniLuna :dizzy: </h1>
 
-## Anime website on React using Jikan API. *(Still under development)*
-### This project based on React, using Tailwind CSS, API's like Jikan Anime Database, UI libraries. For this project currently used Framer Motion.
+## Anime website on React using Jikan API. (Under development :construction_worker:)
+### This project based on React :electron:, using Tailwind CSS :cyclone:, API's like Jikan Anime Database, UI libraries. For this project currently used Framer Motion.
 
 
 Idea of this project to make website for watching anime more comfortable with beautiful and easy to UI to make user experience even better.
