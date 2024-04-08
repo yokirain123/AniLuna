@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import styled from 'styled-components';
 import { useParams, Link } from "react-router-dom";
 
+
+import Popup from "./Popup";
+
 function AnimeItem() {
   const { id } = useParams();
   console.log(id);
@@ -41,32 +44,51 @@ function AnimeItem() {
     console.log(data.data)
   }
 
+  const [buttonPopup, setButtonPopup] = useState(false);
+
   useEffect(() => {
     getAnime(id)
     getCharacters(id)
   }, []);
 
   return (
-    <FullAnime className="px-[7rem] py-[5rem]">
+    <FullAnime className="px-[7rem] py-[5rem] relative">
       <AnimeDetails className="details flex justify-between">
         <div className="image">
           <img src={images?.jpg.large_image_url} alt=""></img>
         </div>
         <div className="bg-[#242126] p-[15px] rounded-[20px]">
           <h1 className="text-[24px] text-[#be92f6]">{title}</h1>
-            <p>Japanese Title: <span>{title_japanese}</span></p>
-            <p>Rating: <span>{rating}</span></p>
-            <p>Aired: <span>{aired?.string}</span></p>
-            <p>Status: <span>{status}</span></p>
-            <p>Type: <span>{type}</span></p>
-            <p>Episodes: <span>{episodes}</span></p>
-            <p>Season: <span>{season}</span></p>
-            <p>Duration: <span>{duration}</span></p>
+          <p>
+            Japanese Title: <span>{title_japanese}</span>
+          </p>
+          <p>
+            Rating: <span>{rating}</span>
+          </p>
+          <p>
+            Aired: <span>{aired?.string}</span>
+          </p>
+          <p>
+            Status: <span>{status}</span>
+          </p>
+          <p>
+            Type: <span>{type}</span>
+          </p>
+          <p>
+            Episodes: <span>{episodes}</span>
+          </p>
+          <p>
+            Season: <span>{season}</span>
+          </p>
+          <p>
+            Duration: <span>{duration}</span>
+          </p>
         </div>
       </AnimeDetails>
       <Description className="description text-white bg-[#242126] p-[15px] rounded-[20px] my-[5rem]">
         {synopsis && (showMore ? synopsis : synopsis.substring(0, 450) + "...")}
-        <button className="ml-5"
+        <button
+          className="ml-5"
           onClick={() => {
             setShowMore(!showMore);
           }}
@@ -76,22 +98,30 @@ function AnimeItem() {
       </Description>
       <AnimeCharacters>
         <h3 className="text-[24px] text-[#be92f6]">Characters</h3>
-        <div className="charactersGrid grid grid-cols-8 grid-rows-3	gap-[5px]">
-          {characters?.map((character, index) => {
-            const { role } = character;
-            const { images, name, mal_id, voice_actors } = character.character;
-            return (
-              <Link to={`/character/${mal_id}`} key={index}>
-                <div className="character">
-                  <img src={images?.jpg.image_url} alt="" />
-                  <h4>{name}</h4>
-                  <p>{role}</p>
-                  <p>{voice_actors}</p>
-                </div>
-              </Link>
-            );
-          })}
-        </div>
+        <button onClick={() => setButtonPopup(true)} className="text-white">
+          Open Modal
+        </button>
+        <Popup className="absolute" trigger={buttonPopup} setTrigger={setButtonPopup}>
+          <div className="">
+            <div className="charactersGrid grid grid-cols-8 gap-5 justify-center p-4 py-16">
+              {characters?.map((character, index) => {
+                const { role } = character;
+                const { images, name, mal_id, voice_actors } =
+                  character.character;
+                return (
+                  <Link to={`/character/${mal_id}`} key={index}>
+                    <div className="character flex w-[100px] flex-col">
+                      <img src={images?.jpg.image_url} alt="" />
+                      <h4>{name}</h4>
+                      <p>{role}</p>
+                      <p>{voice_actors}</p>
+                    </div>
+                  </Link>
+                );
+              })}
+            </div>
+          </div>
+        </Popup>
       </AnimeCharacters>
     </FullAnime>
   );
