@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import styled from 'styled-components';
 import { useParams, Link } from "react-router-dom";
 
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
 
-import Popup from "./Popup";
+import { IoMdCloseCircle } from "react-icons/io";
 
 function AnimeItem() {
   const { id } = useParams();
@@ -43,6 +45,69 @@ function AnimeItem() {
     setCharacters(data.data)
     console.log(data.data)
   }
+
+  // Popup
+
+  const characterPopup = () => (
+    <Popup
+      trigger={<button className="button text-white"> Open Modal </button>}
+      modal
+      nested
+    >
+      {(close) => (
+        <div className="modal p-4">
+          <ul className="flex justify-between items-center">
+            <li>
+              <div className="header text-[24px] leading-3 text-[#be92f6]"> Characters </div>
+            </li>
+            <li>
+              <button className="close flex justify-center" onClick={close}>
+                <IoMdCloseCircle size={"2.5em"} color="#be92f6" />
+              </button>
+            </li>
+          </ul>
+
+          <div className="content">
+            <div className="mt-10 flex flex-col gap-5">
+              <div className="charactersGrid grid grid-cols-8 gap-6 justify-center py-[16px]">
+                {characters?.map((character, index) => {
+                  const { role } = character;
+                  const { images, name, mal_id, voice_actors } =
+                    character.character;
+                  return (
+                    <Link to={`/character/${mal_id}`} key={index}>
+                      <div className="character flex w-[100px] flex-col">
+                        <img src={images?.jpg.image_url} alt="" />
+                        <h4>{name}</h4>
+                        <p>{role}</p>
+                        <p>{voice_actors}</p>
+                      </div>
+                    </Link>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+          <div className="actions">
+            <Popup
+              trigger={<button className="button"> Trigger </button>}
+              position="top center"
+              nested
+            ></Popup>
+            <button
+              className="button"
+              onClick={() => {
+                console.log("modal closed ");
+                close();
+              }}
+            >
+              close modal
+            </button>
+          </div>
+        </div>
+      )}
+    </Popup>
+  );
 
   const [buttonPopup, setButtonPopup] = useState(false);
 
@@ -98,30 +163,9 @@ function AnimeItem() {
       </Description>
       <AnimeCharacters>
         <h3 className="text-[24px] text-[#be92f6]">Characters</h3>
-        <button onClick={() => setButtonPopup(true)} className="text-white">
-          Open Modal
-        </button>
-        <Popup className="absolute" trigger={buttonPopup} setTrigger={setButtonPopup}>
-          <div className="">
-            <div className="charactersGrid grid grid-cols-8 gap-5 justify-center p-4 py-16">
-              {characters?.map((character, index) => {
-                const { role } = character;
-                const { images, name, mal_id, voice_actors } =
-                  character.character;
-                return (
-                  <Link to={`/character/${mal_id}`} key={index}>
-                    <div className="character flex w-[100px] flex-col">
-                      <img src={images?.jpg.image_url} alt="" />
-                      <h4>{name}</h4>
-                      <p>{role}</p>
-                      <p>{voice_actors}</p>
-                    </div>
-                  </Link>
-                );
-              })}
-            </div>
-          </div>
-        </Popup>
+        <characterPopup className="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm flex justify-center items-center " trigger={buttonPopup} setTrigger={setButtonPopup}>
+          
+        </characterPopup>
       </AnimeCharacters>
     </FullAnime>
   );
@@ -162,7 +206,9 @@ const Description = styled.div `
 const AnimeCharacters = styled.div `
     a, a:visited, a:link { 
       text-decoration: none
-    }
+    }`
+    
+const 
   .character{
     border-radius: 7px;
     transition: all .4s ease-in-out;
