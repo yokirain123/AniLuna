@@ -52,7 +52,9 @@ function AnimeItem() {
           <img src={images?.jpg.large_image_url} alt="" />
         </div>
         <div className="bg-[#242126] p-[15px] rounded-[20px] w-[450px]">
-          <h1 className="text-[24px] text-[#be92f6] mb-3 underline underline-offset-8 text-center">{title}</h1>
+          <h1 className="text-[24px] text-[#be92f6] mb-3 underline underline-offset-8 text-center">
+            {title}
+          </h1>
           <ul className="flex gap-3 flex-col">
             <li>
               <p>
@@ -97,7 +99,7 @@ function AnimeItem() {
           </ul>
         </div>
       </AnimeDetails>
-      <Description className="description text-white bg-[#242126] p-[15px] rounded-[20px] my-[5rem]">
+      <Description className="description text-white   bg-[#242126] p-[15px] rounded-[20px] my-[5rem]">
         {synopsis && (showMore ? synopsis : synopsis.substring(0, 450) + "...")}
         <button className="ml-5" onClick={() => setShowMore(!showMore)}>
           {showMore ? "Show Less" : "Show More"}
@@ -162,6 +164,9 @@ function AnimeItem() {
           })}
         </CharacterList>
       </Popup>
+
+      dada
+      
     </FullAnime>
   );
 }
