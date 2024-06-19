@@ -33,7 +33,7 @@ function Homepage() {
                 rendered === 'airing' ? 'Airing Anime' : 'Upcoming Anime'}
             </h1>
             <div className='search-container'>
-                <div className='filterButton popularFilter'>
+                <div className='filterButton popularFilter text-white'>
                     <button onClick={() => {
                         setRendered('popular')
                     }}>Popular</button>
@@ -44,13 +44,13 @@ function Homepage() {
                         <button type='submit'>Search</button>    
                     </div>
                 </form>
-                <div className='filterButton airingFilter'>
+                <div className='filterButton airingFilter text-white'>
                     <button onClick={() => {
                         setRendered('airing')
                         getAiringAnime()
                     }}>Airing</button>
                 </div>
-                <div className='filterButton upcomingFilter'>
+                <div className='filterButton upcomingFilter text-white'>
                     <button onClick={() => {
                         setRendered('upcoming')
                         getUpcomingAnime()
